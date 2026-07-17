@@ -1,11 +1,8 @@
 import socket
 import threading
-
 HOST = input("Enter Server IP : ")
 PORT = 5000
-
 username = input("Enter Username : ")
-
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 try:
@@ -14,7 +11,6 @@ except Exception as e:
     print("Connection Failed")
     print(e)
     exit()
-
 
 def receive_messages():
     while True:
@@ -25,12 +21,10 @@ def receive_messages():
                 client.send(username.encode())
             else:
                 print(message)
-
         except:
             print("Disconnected from server.")
             client.close()
             break
-
 
 def send_messages():
     while True:
@@ -42,7 +36,6 @@ def send_messages():
                 continue
 
             full_message = f"{username}: {msg}"
-
             client.send(full_message.encode())
 
         except:
